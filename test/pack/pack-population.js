@@ -1,5 +1,5 @@
 import test from 'ava';
-import packPopulation from '../../src/utils/pack-population';
+import packPopulation from '../../src/pack/pack-population';
 
 test('empty', t => {
   t.is(packPopulation(0), '');

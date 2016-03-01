@@ -1,5 +1,5 @@
 import test from 'ava';
-import unpack from '../../src/utils/unpack';
+import unpack from '../../src/unpack/unpack';
 
 test('single', t => {
 	t.same(

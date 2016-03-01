@@ -1,5 +1,5 @@
 import test from 'ava';
-import pack from '../../src/utils/pack';
+import pack from '../../src/pack/pack';
 
 test('single', t => {
 	t.is(pack({

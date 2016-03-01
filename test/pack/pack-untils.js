@@ -1,5 +1,5 @@
 import test from 'ava';
-import packUntils from '../../src/utils/pack-untils';
+import packUntils from '../../src/pack/pack-untils';
 
 test('untils', t => {
   t.is(packUntils([

@@ -1,5 +1,5 @@
 import test from 'ava';
-import packBase60 from '../../src/utils/pack-base-60';
+import packBase60 from '../../src/pack/pack-base-60';
 
 test('whole numbers', t => {
 	t.same(packBase60(0, 0), '0');

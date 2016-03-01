@@ -1,5 +1,5 @@
 import test from 'ava';
-import filterLinkPack from '../../src/utils/filter-link-pack';
+import filterLinkPack from '../../src/pack/filter-link-pack';
 
 const DATA = {
 	version: 'test-filter-link-pack',

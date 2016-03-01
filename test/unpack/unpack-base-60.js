@@ -1,5 +1,5 @@
 import test from 'ava';
-import unpackBase60 from '../../src/utils/unpack-base-60';
+import unpackBase60 from '../../src/unpack/unpack-base-60';
 
 const EPSILON = 1e-30;
 

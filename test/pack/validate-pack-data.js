@@ -1,5 +1,5 @@
 import test from 'ava';
-import validatePackData from '../../src/utils/validate-pack-data';
+import validatePackData from '../../src/pack/validate-pack-data';
 
 test('errors without name', t => {
 	t.throws(_ => validatePackData({

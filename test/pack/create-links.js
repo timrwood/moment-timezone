@@ -1,5 +1,5 @@
 import test from 'ava';
-import createLinks from '../../src/utils/create-links';
+import createLinks from '../../src/pack/create-links';
 
 const ZONE_A = { name: "Zone/A", abbrs: ["ABC", "DEF", "GHI"], offsets: [10, 20, 30], untils: [-1000, 100, 200] };
 const ZONE_B = { name: "Zone/B", abbrs: ["ABC", "DEF", "GHI"], offsets: [10, 20, 30], untils: [-1000, 100, 200] };

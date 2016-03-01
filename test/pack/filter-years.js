@@ -1,5 +1,5 @@
 import test from 'ava';
-import filterYears from '../../src/utils/filter-years';
+import filterYears from '../../src/pack/filter-years';
 
 function unpacked () {
 	return {
