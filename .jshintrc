@@ -14,7 +14,7 @@
     "regexp"        : true,
     "undef"         : true,
     "unused"        : true,
-    "strict"        : true,
+    "strict"        : false,
     "trailing"      : true,
 
     "asi"           : false,
@@ -22,7 +22,7 @@
     "debug"         : false,
     "eqnull"        : true,
     "es5"           : false,
-    "esnext"        : false,
+    "esnext"        : true,
     "evil"          : false,
     "expr"          : false,
     "funcscope"     : false,
