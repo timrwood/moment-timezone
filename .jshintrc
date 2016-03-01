@@ -13,7 +13,7 @@
     "plusplus"      : false,
     "regexp"        : true,
     "undef"         : true,
-    "unused"        : true,
+    "unused"        : "vars",
     "strict"        : false,
     "trailing"      : true,
 
