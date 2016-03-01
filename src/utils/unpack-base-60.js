@@ -1,13 +1,6 @@
-const { max } = Math;
+import charCodeToInt from './char-code-to-int';
 
-function charCodeToInt(charCode) {
-	if (charCode > 96) {
-		return charCode - 87;
-	} else if (charCode > 64) {
-		return charCode - 29;
-	}
-	return charCode - 48;
-}
+const { max } = Math;
 
 export default function unpackBase60(string) {
 	const parts = string.split('.');
