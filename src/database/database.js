@@ -26,7 +26,7 @@ export default class Database {
 			let normalized = normalizeName(name);
 			this._zones[normalized] = packed[i];
 			this._names[normalized] = name;
-      // TODO: Add tests for checking guesses
+			// TODO: Add tests for checking guesses
 			// if (split[5]) {
 			//   addToGuesses(normalized, split[2].split(' '));
 			// }
