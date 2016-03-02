@@ -25,9 +25,6 @@
 	}
 
 	var VERSION = "0.5.1",
-		zones = {},
-		links = {},
-		names = {},
 		guesses = {},
 		cachedGuess,
 
@@ -41,14 +38,8 @@
 	}
 
 	/************************************
-		Zone object
-	************************************/
-
-
-	/************************************
 		Current Timezone
 	************************************/
-
 
 	function ZoneScore(zone) {
 		this.zone = zone;
@@ -190,85 +181,6 @@
 		Global Methods
 	************************************/
 
-	function addZone (packed) {
-		var i, name, split, normalized;
-
-		if (typeof packed === "string") {
-			packed = [packed];
-		}
-
-		for (i = 0; i < packed.length; i++) {
-			split = packed[i].split('|');
-			name = split[0];
-			normalized = normalizeName(name);
-			zones[normalized] = packed[i];
-			names[normalized] = name;
-			if (split[5]) {
-				addToGuesses(normalized, split[2].split(' '));
-			}
-		}
-	}
-
-	function getZone (name, caller) {
-		name = normalizeName(name);
-
-		var zone = zones[name];
-		var link;
-
-		if (zone instanceof Zone) {
-			return zone;
-		}
-
-		if (typeof zone === 'string') {
-			zone = new Zone(zone);
-			zones[name] = zone;
-			return zone;
-		}
-
-		// Pass getZone to prevent recursion more than 1 level deep
-		if (links[name] && caller !== getZone && (link = getZone(links[name], getZone))) {
-			zone = zones[name] = new Zone();
-			zone._set(link);
-			zone.name = names[name];
-			return zone;
-		}
-
-		return null;
-	}
-
-	function getNames () {
-		var i, out = [];
-
-		for (i in names) {
-			if (names.hasOwnProperty(i) && (zones[i] || zones[links[i]]) && names[i]) {
-				out.push(names[i]);
-			}
-		}
-
-		return out.sort();
-	}
-
-	function addLink (aliases) {
-		var i, alias, normal0, normal1;
-
-		if (typeof aliases === "string") {
-			aliases = [aliases];
-		}
-
-		for (i = 0; i < aliases.length; i++) {
-			alias = aliases[i].split('|');
-
-			normal0 = normalizeName(alias[0]);
-			normal1 = normalizeName(alias[1]);
-
-			links[normal0] = normal1;
-			names[normal0] = alias[0];
-
-			links[normal1] = normal0;
-			names[normal1] = alias[1];
-		}
-	}
-
 	function loadData (data) {
 		addZone(data.zones);
 		addLink(data.links);
@@ -313,13 +225,9 @@
 	tz._zones       = zones;
 	tz._links       = links;
 	tz._names       = names;
-	tz.add          = addZone;
-	tz.link         = addLink;
 	tz.load         = loadData;
-	tz.zone         = getZone;
 	tz.zoneExists   = zoneExists; // deprecated in 0.1.0
 	tz.guess        = guess;
-	tz.names        = getNames;
 	tz.moveInvalidForward   = true;
 	tz.moveAmbiguousForward = false;
 
