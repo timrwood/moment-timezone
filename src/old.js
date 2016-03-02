@@ -25,7 +25,6 @@
 	}
 
 	var VERSION = "0.5.1",
-		guesses = {},
 		cachedGuess,
 
 		momentVersion = moment.version.split('.'),
@@ -42,19 +41,6 @@
 	************************************/
 
 	function rebuildGuess () {
-
-		// use Intl API when available and returning valid time zone
-		try {
-			var intlName = Intl.DateTimeFormat().resolvedOptions().timeZone;
-			var name = names[normalizeName(intlName)];
-			if (name) {
-				return name;
-			}
-			logError("Moment Timezone found " + intlName + " from the Intl api, but did not have that data loaded.");
-		} catch (e) {
-			// Intl unavailable, fall back to manual guessing.
-		}
-
 		var offsets = userOffsets(),
 			offsetsLength = offsets.length,
 			guesses = guessesForUserOffsets(offsets),
@@ -94,11 +80,6 @@
 		return !!getZone(name);
 	}
 
-	function logError (message) {
-		if (typeof console !== 'undefined' && typeof console.error === 'function') {
-			console.error(message);
-		}
-	}
 
 	/************************************
 		moment.tz namespace
