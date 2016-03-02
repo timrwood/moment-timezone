@@ -6,6 +6,13 @@ export default class Database {
 		this._links = {};
 		this._names = {};
 		this._zones = {};
+		this.version = "";
+	}
+
+	put (data) {
+		this.putZone(data.zones);
+		this.putLink(data.links);
+		this.version = data.version;
 	}
 
 	putZone (packed) {
@@ -23,6 +30,27 @@ export default class Database {
 			// if (split[5]) {
 			//   addToGuesses(normalized, split[2].split(' '));
 			// }
+		}
+	}
+
+	putLink (aliases) {
+		const { _names, _links } = this;
+
+		if (typeof aliases === "string") {
+			aliases = [aliases];
+		}
+
+		for (let i = 0; i < aliases.length; i++) {
+			let alias = aliases[i].split('|');
+
+			let normal0 = normalizeName(alias[0]);
+			let normal1 = normalizeName(alias[1]);
+
+			_links[normal0] = normal1;
+			_names[normal0] = alias[0];
+
+			_links[normal1] = normal0;
+			_names[normal1] = alias[1];
 		}
 	}
 
@@ -66,26 +94,5 @@ export default class Database {
 		}
 
 		return out.sort();
-	}
-
-	putLink (aliases) {
-		const { _names, _links } = this;
-
-		if (typeof aliases === "string") {
-			aliases = [aliases];
-		}
-
-		for (let i = 0; i < aliases.length; i++) {
-			let alias = aliases[i].split('|');
-
-			let normal0 = normalizeName(alias[0]);
-			let normal1 = normalizeName(alias[1]);
-
-			_links[normal0] = normal1;
-			_names[normal0] = alias[0];
-
-			_links[normal1] = normal0;
-			_names[normal1] = alias[1];
-		}
 	}
 }

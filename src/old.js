@@ -181,11 +181,6 @@
 		Global Methods
 	************************************/
 
-	function loadData (data) {
-		addZone(data.zones);
-		addLink(data.links);
-		tz.dataVersion = data.version;
-	}
 
 	function zoneExists (name) {
 		if (!zoneExists.didShowError) {
@@ -222,10 +217,6 @@
 
 	tz.version      = VERSION;
 	tz.dataVersion  = '';
-	tz._zones       = zones;
-	tz._links       = links;
-	tz._names       = names;
-	tz.load         = loadData;
 	tz.zoneExists   = zoneExists; // deprecated in 0.1.0
 	tz.guess        = guess;
 	tz.moveInvalidForward   = true;
