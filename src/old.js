@@ -190,10 +190,6 @@
 		Global Methods
 	************************************/
 
-	function normalizeName (name) {
-		return (name || '').toLowerCase().replace(/\//g, '_');
-	}
-
 	function addZone (packed) {
 		var i, name, split, normalized;
 
