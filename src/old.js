@@ -41,18 +41,6 @@
 		Current Timezone
 	************************************/
 
-	function ZoneScore(zone) {
-		this.zone = zone;
-		this.offsetScore = 0;
-		this.abbrScore = 0;
-	}
-
-	ZoneScore.prototype.scoreOffsetAt = function (offsetAt) {
-		this.offsetScore += Math.abs(this.zone.offset(offsetAt.at) - offsetAt.offset);
-		if (this.zone.abbr(offsetAt.at).match(/[A-Z]/g).join('') !== offsetAt.abbr) {
-			this.abbrScore++;
-		}
-	};
 
 	function findChange(low, high) {
 		var mid, diff;
