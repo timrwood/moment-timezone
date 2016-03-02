@@ -68,20 +68,6 @@
 	}
 
 	/************************************
-		Global Methods
-	************************************/
-
-
-	function zoneExists (name) {
-		if (!zoneExists.didShowError) {
-			zoneExists.didShowError = true;
-				logError("moment.tz.zoneExists('" + name + "') has been deprecated in favor of !moment.tz.zone('" + name + "')");
-		}
-		return !!getZone(name);
-	}
-
-
-	/************************************
 		moment.tz namespace
 	************************************/
 
@@ -102,7 +88,6 @@
 
 	tz.version      = VERSION;
 	tz.dataVersion  = '';
-	tz.zoneExists   = zoneExists; // deprecated in 0.1.0
 	tz.guess        = guess;
 	tz.moveInvalidForward   = true;
 	tz.moveAmbiguousForward = false;
