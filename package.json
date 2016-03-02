@@ -46,7 +46,7 @@
 		}
 	},
 	"scripts": {
-		"ava": "ava test/**/*.js --require babel-core/register",
+		"ava": "ava test/**/*.js !**/helpers/** --require babel-core/register",
 		"grunt": "grunt",
 		"test": "npm run ava && npm run grunt"
 	}
