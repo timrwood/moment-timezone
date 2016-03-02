@@ -139,24 +139,6 @@
 		if (this._z) { return this._z.name; }
 	};
 
-	function abbrWrap (old) {
-		return function () {
-			if (this._z) { return this._z.abbr(this); }
-			return old.call(this);
-		};
-	}
-
-	function resetZoneWrap (old) {
-		return function () {
-			this._z = null;
-			return old.apply(this, arguments);
-		};
-	}
-
-	fn.zoneName = abbrWrap(fn.zoneName);
-	fn.zoneAbbr = abbrWrap(fn.zoneAbbr);
-	fn.utc      = resetZoneWrap(fn.utc);
-
 	moment.tz.setDefault = function(name) {
 		if (major < 2 || (major === 2 && minor < 9)) {
 			logError('Moment Timezone setDefault() requires Moment.js >= 2.9.0. You are using Moment.js ' + moment.version + '.');
