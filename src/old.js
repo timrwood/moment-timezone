@@ -41,40 +41,6 @@
 		Current Timezone
 	************************************/
 
-	function addToGuesses (name, offsets) {
-		var i, offset;
-		arrayToInt(offsets);
-		for (i = 0; i < offsets.length; i++) {
-			offset = offsets[i];
-			guesses[offset] = guesses[offset] || {};
-			guesses[offset][name] = true;
-		}
-	}
-
-	function guessesForUserOffsets (offsets) {
-		var offsetsLength = offsets.length,
-			filteredGuesses = {},
-			out = [],
-			i, j, guessesOffset;
-
-		for (i = 0; i < offsetsLength; i++) {
-			guessesOffset = guesses[offsets[i].offset] || {};
-			for (j in guessesOffset) {
-				if (guessesOffset.hasOwnProperty(j)) {
-					filteredGuesses[j] = true;
-				}
-			}
-		}
-
-		for (i in filteredGuesses) {
-			if (filteredGuesses.hasOwnProperty(i)) {
-				out.push(names[i]);
-			}
-		}
-
-		return out;
-	}
-
 	function rebuildGuess () {
 
 		// use Intl API when available and returning valid time zone
