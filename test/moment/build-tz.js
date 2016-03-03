@@ -31,7 +31,7 @@ test('parsing tz("2014-01-01", "YYYY-MM-DD", "America/Los_Angeles")', t => {
 	t.same(moment.isMomentArgs, ["2014-01-01"]);
 	t.same(instance.addArgs, [120, 'minutes']);
 	t.same(instance.tzArgs, ["America/Los_Angeles"]);
-	t.same(zone.parseArgs, [instance]);
+	t.same(zone.parseArgs, [instance, tz]);
 });
 
 test('parsing tz(1400000000000, "America/Los_Angeles")', t => {
@@ -107,5 +107,5 @@ test('parsing tz("America/Los_Angeles")', t => {
 	t.same(moment.isMomentArgs, [undefined]);
 	t.same(instance.addArgs, [240, 'minutes']);
 	t.same(instance.tzArgs, ["America/Los_Angeles"]);
-	t.same(zone.parseArgs, [instance]);
+	t.same(zone.parseArgs, [instance, tz]);
 });
