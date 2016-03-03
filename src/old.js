@@ -24,13 +24,6 @@
 		return moment;
 	}
 
-	var VERSION = "0.5.1",
-
-	// Moment.js version check
-	if (major < 2 || (major === 2 && minor < 6)) {
-		logError('Moment Timezone requires Moment.js >= 2.6.0. You are using Moment.js ' + moment.version + '. See momentjs.com');
-	}
-
 	/************************************
 		moment.tz namespace
 	************************************/
@@ -50,7 +43,6 @@
 		return out;
 	}
 
-	tz.version      = VERSION;
 	tz.dataVersion  = '';
 	tz.moveInvalidForward   = true;
 	tz.moveAmbiguousForward = false;
