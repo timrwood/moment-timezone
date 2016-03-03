@@ -25,22 +25,10 @@
 	}
 
 	var VERSION = "0.5.1",
-		cachedGuess,
 
 	// Moment.js version check
 	if (major < 2 || (major === 2 && minor < 6)) {
 		logError('Moment Timezone requires Moment.js >= 2.6.0. You are using Moment.js ' + moment.version + '. See momentjs.com');
-	}
-
-	/************************************
-		Current Timezone
-	************************************/
-
-	function guess (ignoreCache) {
-		if (!cachedGuess || ignoreCache) {
-			cachedGuess = rebuildGuess();
-		}
-		return cachedGuess;
 	}
 
 	/************************************
@@ -64,7 +52,6 @@
 
 	tz.version      = VERSION;
 	tz.dataVersion  = '';
-	tz.guess        = guess;
 	tz.moveInvalidForward   = true;
 	tz.moveAmbiguousForward = false;
 
