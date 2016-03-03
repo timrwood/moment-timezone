@@ -104,7 +104,7 @@ test('parsing tz("America/Los_Angeles")', t => {
 	t.is(parsed, instance);
 	t.same(db.getZoneArgs, ["America/Los_Angeles"]);
 	t.same(moment.utcArgs, []);
-	t.same(moment.isMomentArgs, ["America/Los_Angeles"]);
+	t.same(moment.isMomentArgs, [undefined]);
 	t.same(instance.addArgs, [240, 'minutes']);
 	t.same(instance.tzArgs, ["America/Los_Angeles"]);
 	t.same(zone.parseArgs, [instance]);
