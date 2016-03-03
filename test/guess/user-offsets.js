@@ -2,11 +2,9 @@ import test from 'ava';
 import userOffsets from '../../src/guess/user-offsets';
 
 const oldGetTimezoneOffset = Date.prototype.getTimezoneOffset;
-const oldGetFullYear = Date.prototype.getFullYear;
 
 test.afterEach(t => {
 	Date.prototype.getTimezoneOffset = oldGetTimezoneOffset;
-	Date.prototype.getFullYear = oldGetFullYear;
 });
 
 test('with daylight saving time', t => {
