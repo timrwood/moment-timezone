@@ -27,10 +27,6 @@
 	var VERSION = "0.5.1",
 		cachedGuess,
 
-		momentVersion = moment.version.split('.'),
-		major = +momentVersion[0],
-		minor = +momentVersion[1];
-
 	// Moment.js version check
 	if (major < 2 || (major === 2 && minor < 6)) {
 		logError('Moment Timezone requires Moment.js >= 2.6.0. You are using Moment.js ' + moment.version + '. See momentjs.com');
