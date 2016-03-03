@@ -1,13 +1,6 @@
 import test from 'ava';
+import stub from '../helpers/stub';
 import attachUpdateOffset from '../../src/moment/attach-update-offset';
-
-function stub (object, method, returns) {
-	object[method] = function (...args) {
-		object[method + 'Args'] = args;
-		return returns;
-	};
-	return object;
-}
 
 test('attaches updateOffset to object', t => {
 	const moment = {};

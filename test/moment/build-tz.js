@@ -1,13 +1,6 @@
 import test from 'ava';
+import stub from '../helpers/stub';
 import buildTz from '../../src/moment/build-tz';
-
-function stub (object, method, returns) {
-	object[method] = function (...args) {
-		object[method + 'Args'] = args;
-		return returns;
-	};
-	return object;
-}
 
 test('parsing tz("2014-01-01", "YYYY-MM-DD", "America/Los_Angeles")', t => {
 	const zone = stub({}, 'parse', 120);
