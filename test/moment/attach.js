@@ -8,6 +8,14 @@ test.afterEach(t => {
 	resumeErrors();
 });
 
+function fakeMoment () {
+	return {
+		version: "2.6.0",
+		fn: {},
+		momentProperties: []
+	};
+}
+
 test('check moment version', t => {
 	pauseErrors();
 	const tz = attach({ version: "2.5.0" });
@@ -17,7 +25,44 @@ test('check moment version', t => {
 });
 
 test('moment-timezone version', t => {
-	let tz = attach(moment);
+	const moment = fakeMoment();
+	const tz = attach(moment);
 
 	t.is(tz.version, VERSION);
+});
+
+test('moment-timezone invalid and ambiguous flags', t => {
+	const moment = fakeMoment();
+	const tz = attach(moment);
+
+	t.true(tz.moveInvalidForward);
+	t.false(tz.moveAmbiguousForward);
+});
+
+test('attaches to moment as .tz', t => {
+	const moment = fakeMoment();
+	const tz = attach(moment);
+
+	t.is(moment.tz, tz);
+	t.is(tz.moment, moment);
+});
+
+test('has public tz methods', t => {
+	const moment = fakeMoment();
+	const tz = attach(moment);
+
+	t.is(typeof tz, 'function');
+	t.is(typeof tz.add, 'function');
+	t.is(typeof tz.link, 'function');
+	t.is(typeof tz.load, 'function');
+	t.is(typeof tz.zone, 'function');
+	t.is(typeof tz.guess, 'function');
+	t.is(typeof tz.names, 'function');
+	t.is(typeof tz.setDefault, 'function');
+	t.is(typeof moment.fn.tz, 'function');
+	t.is(typeof moment.fn.utc, 'function');
+	t.is(typeof moment.fn.zoneName, 'function');
+	t.is(typeof moment.fn.zoneAbbr, 'function');
+	t.is(typeof moment.updateOffset, 'function');
+	t.same(moment.momentProperties, ['_a', '_z']);
 });
