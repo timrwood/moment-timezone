@@ -1,3 +1,5 @@
+import babel from 'rollup-plugin-babel';
+
 import registerBuildTask from './builds';
 import registerDataTask from './data';
 import registerDataCollectTask from './data-collect';
@@ -27,6 +29,7 @@ const build = {
 const uglify = {
 	all: {
 		files: {
+			'dest/moment-timezone.umd.min.js'                   : 'dest/moment-timezone.umd.js',
 			'builds/moment-timezone.min.js'                     : 'moment-timezone.js',
 			'builds/moment-timezone-with-data.min.js'           : 'builds/moment-timezone-with-data.js',
 			'builds/moment-timezone-with-data-2010-2020.min.js' : 'builds/moment-timezone-with-data-2010-2020.js'
@@ -46,13 +49,35 @@ const clean = {
 	data: ['temp']
 };
 
+const rollup = {
+	options: {
+		format: 'umd',
+		globals: {
+			moment: 'moment'
+		},
+		moduleName: 'moment',
+		plugins: [babel({
+			babelrc: false,
+			compact: false,
+			presets: ['es2015-loose-rollup'],
+			exclude: 'node_modules/**'
+		})]
+	},
+	umd: {
+		files: {
+			'dest/moment-timezone.umd.js': ['src/moment-timezone.js'],
+		}
+	}
+};
+
 export default grunt => {
 	grunt.initConfig({
 		nodeunit,
 		build,
 		uglify,
 		jshint,
-		clean
+		clean,
+		rollup
 	});
 
 	registerBuildTask(grunt);
@@ -71,6 +96,7 @@ export default grunt => {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-rollup');
 
 	grunt.registerTask('release', [
 		'jshint',
