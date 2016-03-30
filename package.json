@@ -1,60 +1,63 @@
 {
-	"name": "moment-timezone",
-	"version": "0.5.2",
-	"description": "Parse and display moments in any timezone.",
-	"homepage": "http://momentjs.com/timezone/",
-	"author": "Tim Wood <washwithcare@gmail.com> (http://timwoodcreates.com/)",
-	"keywords": [
-		"moment",
-		"date",
-		"time",
-		"timezone",
-		"olson",
-		"iana",
-		"zone",
-		"tz"
-	],
-	"main": "./index.js",
-	"engines": {
-		"node": "*"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/moment/moment-timezone.git"
-	},
-	"bugs": {
-		"url": "https://github.com/moment/moment-timezone/issues"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"moment": ">= 2.6.0"
-	},
-	"devDependencies": {
-		"ava": "0.13.0",
-		"babel-cli": "^6.0.0",
-		"babel-preset-es2015-loose-rollup": "7.0.0",
-		"grunt": "0.4.5",
-		"grunt-contrib-clean": "0.6.0",
-		"grunt-contrib-jshint": "0.11.2",
-		"grunt-contrib-nodeunit": "0.4.1",
-		"grunt-contrib-uglify": "0.9.1",
-		"grunt-rollup": "0.6.2",
-		"rollup-plugin-babel": "^2.4.0"
-	},
-	"jspm": {
-		"main": "builds/moment-timezone-with-data",
-		"shim": {
-			"moment-timezone": {
-				"deps": [
-					"moment"
-				]
-			}
-		}
-	},
-	"scripts": {
-		"ava": "ava temp/test/**/*.js",
-		"babel": "babel src -d temp/src && babel test -d temp/test",
-		"grunt": "grunt",
-		"test": "npm run babel && npm run grunt && npm run ava"
-	}
+  "name": "moment-timezone",
+  "version": "0.5.2",
+  "description": "Parse and display moments in any timezone.",
+  "homepage": "http://momentjs.com/timezone/",
+  "author": "Tim Wood <washwithcare@gmail.com> (http://timwoodcreates.com/)",
+  "keywords": [
+    "moment",
+    "date",
+    "time",
+    "timezone",
+    "olson",
+    "iana",
+    "zone",
+    "tz"
+  ],
+  "main": "./index.js",
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moment/moment-timezone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moment/moment-timezone/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "moment": ">= 2.6.0"
+  },
+  "devDependencies": {
+    "ava": "0.13.0",
+    "babel-cli": "^6.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.4",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "babel-preset-es2015-loose-rollup": "7.0.0",
+    "grunt": "0.4.5",
+    "grunt-babel": "^6.0.0",
+    "grunt-contrib-clean": "0.6.0",
+    "grunt-contrib-jshint": "0.11.2",
+    "grunt-contrib-nodeunit": "0.4.1",
+    "grunt-contrib-uglify": "1.0.1",
+    "grunt-rollup": "0.6.2",
+    "rollup-plugin-babel": "^2.4.0"
+  },
+  "jspm": {
+    "main": "builds/moment-timezone-with-data",
+    "shim": {
+      "moment-timezone": {
+        "deps": [
+          "moment"
+        ]
+      }
+    }
+  },
+  "scripts": {
+    "ava": "ava temp/test/**/*.js",
+    "babel": "babel src -d temp/src && babel test -d temp/test",
+    "grunt": "grunt",
+    "test": "npm run babel && npm run grunt && npm run ava"
+  }
 }
