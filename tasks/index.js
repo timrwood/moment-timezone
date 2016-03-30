@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel';
+import babelPlugin from 'rollup-plugin-babel';
 
 import registerBuildTask from './builds';
 import registerDataTask from './data';
@@ -29,15 +29,14 @@ const build = {
 const uglify = {
 	all: {
 		files: {
-			'dest/moment-timezone.umd.min.js'                   : 'dest/moment-timezone.umd.js',
-			'builds/moment-timezone.min.js'                     : 'moment-timezone.js',
-			'builds/moment-timezone-with-data.min.js'           : 'builds/moment-timezone-with-data.js',
-			'builds/moment-timezone-with-data-2010-2020.min.js' : 'builds/moment-timezone-with-data-2010-2020.js'
+			'builds/moment-timezone.min.js'              : 'builds/moment-timezone.js',
+			'builds/moment-timezone-utils.min.js'        : 'builds/moment-timezone-utils.js',
+			'builds/moment-timezone-all-years.min.js'    : 'builds/moment-timezone-all-years.js',
+			'builds/moment-timezone-without-data.min.js' : 'builds/moment-timezone-without-data.js'
 		}
 	},
 	options: {
-		report : 'gzip',
-		preserveComments : 'some'
+		report: 'gzip'
 	}
 };
 
@@ -56,7 +55,7 @@ const rollup = {
 			moment: 'moment'
 		},
 		moduleName: 'moment',
-		plugins: [babel({
+		plugins: [babelPlugin({
 			babelrc: false,
 			compact: false,
 			presets: ['es2015-loose-rollup'],
@@ -64,20 +63,38 @@ const rollup = {
 		})]
 	},
 	umd: {
-		files: {
-			'dest/moment-timezone.umd.js': ['src/moment-timezone.js'],
-		}
+		files: [{
+			expand: true,
+			cwd: 'src',
+			src: 'moment-timezone*.js',
+			dest: 'builds'
+		}]
+	}
+};
+
+const babel = {
+	options: {
+		presets: ['es2015-loose'],
+		plugins: ['transform-es2015-modules-commonjs']
+	},
+	tests: {
+		files: [{
+			expand: true,
+			src: '{test,src}/**/*.js',
+			dest: 'temp'
+		}]
 	}
 };
 
 export default grunt => {
 	grunt.initConfig({
-		nodeunit,
+		babel,
 		build,
-		uglify,
-		jshint,
 		clean,
-		rollup
+		jshint,
+		nodeunit,
+		rollup,
+		uglify
 	});
 
 	registerBuildTask(grunt);
@@ -92,6 +109,7 @@ export default grunt => {
 	registerDataZicTask(grunt);
 	registerDataZdumpTask(grunt);
 
+	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
